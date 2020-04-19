@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)chooseCardAtIndex:(NSUInteger)index;
 - (Card *)cardAtIndex:(NSUInteger)index;
 
-@property (nonatomic, readonly) NSUInteger score;
+@property (nonatomic, readonly) int score;
 
 @end
 

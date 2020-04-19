@@ -10,7 +10,7 @@
 
 @interface CardMatchingGame ()
 // re-declare
-@property (nonatomic, readwrite) NSUInteger score;
+@property (nonatomic, readwrite) int score;
 @property (nonatomic, strong) NSMutableArray *cards; // NSMutableArray just holds a bunch of pointers, we need to make sure they are of type (Card *) indeed
 @end
 
@@ -22,13 +22,17 @@
 }
 
 - (instancetype)initWithCardCount: (NSUInteger)count usingDeck:(Deck *) deck {
-    for (int i = 0; i < count; i++) {
-        Card *card = [deck drawRandomCard];
-        if (card) {
-            [self.cards addObject:card];
-        }
-        else {
-            return nil;
+    self  = [super init];
+    if (self) {
+        _score = 0;
+        for (int i = 0; i < count; i++) {
+            Card *card = [deck drawRandomCard];
+            if (card) {
+                [self.cards addObject:card];
+            }
+            else {
+                return nil;
+            }
         }
     }
     return self;
@@ -66,8 +70,6 @@ static const int COST_TO_CHOOSE = 1;
         self.score -= COST_TO_CHOOSE;
         card.chosen = YES;
     }
-        
-    
 }
 
 - (Card *)cardAtIndex:(NSUInteger)index {
